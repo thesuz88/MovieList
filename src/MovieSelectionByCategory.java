@@ -23,38 +23,9 @@ public class MovieSelectionByCategory {
             //method to validate if the user typed in a correct category
             category = validateCategory(scan, category);
 
-            if (category.equalsIgnoreCase("Scifi")) {
-                //return movies in scifi category
-                for (int i = 0; i < movies.size(); i++) {
-                    if (movies.get(i).getCategory().contains("Scifi")) {
-                        System.out.println(movies.get(i).getTitle());
-                    }
-                }
-            }
-            if (category.equalsIgnoreCase("Animated")) {
-                //return movies in animated category
-                for (int i = 0; i < movies.size(); i++) {
-                    if (movies.get(i).getCategory().contains("Animated")) {
-                        System.out.println(movies.get(i).getTitle());
-                    }
-                }
-            }
-            if (category.equalsIgnoreCase("Drama")) {
-                //return movies in drama category
-                for (int i = 0; i < movies.size(); i++) {
-                    if (movies.get(i).getCategory().contains("Drama")) {
-                        System.out.println(movies.get(i).getTitle());
-                    }
-                }
-            }
-            if (category.equalsIgnoreCase("Horror")) {
-                //return movies in horror category
-                for (int i = 0; i < movies.size(); i++) {
-                    if (movies.get(i).getCategory().contains("Horror")) {
-                        System.out.println(movies.get(i).getTitle());
-                    }
-                }
-            }
+            //Method with a series of conditionals to get movie titles based on user entered category
+            getMovieTitle(movies, category);
+
             System.out.println("Would you like to try another category? (y/n)");
             askAgain = scan.nextLine();
 
@@ -66,6 +37,42 @@ public class MovieSelectionByCategory {
         System.out.println("Thank you for choosing a movie!");
 
 
+    }
+
+    private static void getMovieTitle(ArrayList<MovieList> movies, String category) {
+
+        if (category.equalsIgnoreCase("Scifi")) {
+            //return movies in scifi category
+            for (int i = 0; i < movies.size(); i++) {
+                if (movies.get(i).getCategory().contains("Scifi")) {
+                    System.out.println(movies.get(i).getTitle());
+                }
+            }
+        }
+        if (category.equalsIgnoreCase("Animated")) {
+            //return movies in animated category
+            for (int i = 0; i < movies.size(); i++) {
+                if (movies.get(i).getCategory().contains("Animated")) {
+                    System.out.println(movies.get(i).getTitle());
+                }
+            }
+        }
+        if (category.equalsIgnoreCase("Drama")) {
+            //return movies in drama category
+            for (int i = 0; i < movies.size(); i++) {
+                if (movies.get(i).getCategory().contains("Drama")) {
+                    System.out.println(movies.get(i).getTitle());
+                }
+            }
+        }
+        if (category.equalsIgnoreCase("Horror")) {
+            //return movies in horror category
+            for (int i = 0; i < movies.size(); i++) {
+                if (movies.get(i).getCategory().contains("Horror")) {
+                    System.out.println(movies.get(i).getTitle());
+                }
+            }
+        }
     }
 
     private static String getAnotherEntry(Scanner scan, String askAgain) {
