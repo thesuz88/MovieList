@@ -7,8 +7,7 @@ import java.util.Scanner;
 public class MovieSelectionByCategory {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-
-
+        String askAgain;
 
         ArrayList<MovieList> movies = new ArrayList<>();
 
@@ -16,53 +15,80 @@ public class MovieSelectionByCategory {
 
 
         System.out.println("Welcome to the Movie List App!\n");
+        do {
+            System.out.println("There are 10 movies in this list.\nWhat category are you interested in?");
+            System.out.println("(Type: Scifi, Animated, Drama, or Horror)");
+            String category = scan.nextLine();
 
-        System.out.println("There are 10 movies in this list.\nWhat category are you interested in?");
-        System.out.println("(Type: Scifi, Animated, Drama, or Horror)");
-        String category = scan.nextLine();
-
+            //method to validate if the user typed in a correct category
+            category = validateCategory(scan, category);
 
             if (category.equalsIgnoreCase("Scifi")) {
-                //return scifi category
+                //return movies in scifi category
                 for (int i = 0; i < movies.size(); i++) {
-                    if (movies.get(i).getCategory().contains("Scifi")){
+                    if (movies.get(i).getCategory().contains("Scifi")) {
                         System.out.println(movies.get(i).getTitle());
                     }
                 }
             }
             if (category.equalsIgnoreCase("Animated")) {
-                //return Animated category
+                //return movies in animated category
                 for (int i = 0; i < movies.size(); i++) {
-                    if (movies.get(i).getCategory().contains("Animated")){
+                    if (movies.get(i).getCategory().contains("Animated")) {
                         System.out.println(movies.get(i).getTitle());
                     }
                 }
             }
             if (category.equalsIgnoreCase("Drama")) {
-                //return Drama category
+                //return movies in drama category
                 for (int i = 0; i < movies.size(); i++) {
-                    if (movies.get(i).getCategory().contains("Drama")){
+                    if (movies.get(i).getCategory().contains("Drama")) {
                         System.out.println(movies.get(i).getTitle());
                     }
                 }
             }
             if (category.equalsIgnoreCase("Horror")) {
-                //return Horror category
+                //return movies in horror category
                 for (int i = 0; i < movies.size(); i++) {
-                    if (movies.get(i).getCategory().contains("Horror")){
+                    if (movies.get(i).getCategory().contains("Horror")) {
                         System.out.println(movies.get(i).getTitle());
                     }
                 }
             }
+            System.out.println("Would you like to try another category? (y/n)");
+            askAgain = scan.nextLine();
 
+            //Method to validate the user typing y to continue or n to quit
+            askAgain = getAnotherEntry(scan, askAgain);
 
+        } while (askAgain.equalsIgnoreCase("y"));
 
+        System.out.println("Thank you for choosing a movie!");
 
 
     }
 
+    private static String getAnotherEntry(Scanner scan, String askAgain) {
+        while (!askAgain.equalsIgnoreCase("y")&&!askAgain.equalsIgnoreCase("n")){
+            System.out.println("Invalid entry.");
+            System.out.println("Would you like to try another category? (y/n)");
+            askAgain = scan.nextLine();
+        }
+        return askAgain;
+    }
+
+    private static String validateCategory(Scanner scan, String category) {
+        while (!category.equalsIgnoreCase("scifi")&&!category.equalsIgnoreCase("animated")
+                &&!category.equalsIgnoreCase("drama")&&!category.equalsIgnoreCase("horror")){
+            System.out.println("That is not a valid category.");
+            System.out.println("(Type: Scifi, Animated, Drama, or Horror)");
+            category = scan.nextLine();
+        }
+        return category;
+    }
+
     private static void movieCollection(ArrayList<MovieList> movies) {
-        movies.add(new MovieList("Star Wars","Scifi"));
+        movies.add(new MovieList("Star Wars", "Scifi"));
         movies.add(new MovieList("The Godfather", "Drama"));
         movies.add(new MovieList("The Lion King", "Animated"));
         movies.add(new MovieList("Saw", "Horror"));
@@ -71,6 +97,6 @@ public class MovieSelectionByCategory {
         movies.add(new MovieList("Independence Day", "Scifi"));
         movies.add(new MovieList("Remember The Titans", "Drama"));
         movies.add(new MovieList("Alladin", "Animated"));
-        movies.add(new MovieList("Close Encounters of the Third Kind", "Drama"));
+        movies.add(new MovieList("Forrest Gump", "Drama"));
     }
 }
